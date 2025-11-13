@@ -15,7 +15,9 @@
       <h3 class="text-xl font-bold text-gray-900 mb-3 leading-tight">
         {{ title }}
       </h3>
-      <p class="text-gray-600 leading-relaxed flex-1 mb-4">{{ description }}</p>
+      <p class="text-gray-600 leading-relaxed flex-1 mb-4">
+        <slot> </slot>
+      </p>
 
       <!-- Button Area -->
       <div class="mt-auto">
@@ -34,7 +36,6 @@
 interface Props {
   badge?: string;
   title: string;
-  description: string;
   buttonText?: string;
 }
 

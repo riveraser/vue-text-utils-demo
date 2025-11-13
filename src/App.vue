@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import TailwindCard from "./components/TailwindCard.vue";
 
 const handleCardClick = () => {
   alert("Tailwind CSS component clicked!");
 };
+
+const utcDate = new Date();
+const utcISOString = ref(utcDate.toISOString());
 </script>
 
 <template>
@@ -32,28 +36,40 @@ const handleCardClick = () => {
 
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         <TailwindCard
-          badge="Success"
-          title="Tailwind CSS Integration"
-          description="Successfully integrated Tailwind CSS with Vue 3, PostCSS, and Vite. Ready for responsive design!"
+          badge="v-currency"
+          title="Testing the v-currency directive"
           button-text="Learn More"
           @click="handleCardClick"
-        />
-
+        >
+          <p>Amount: <strong>120</strong></p>
+          <p v-currency="120"></p>
+          <p v-currency:EUR="120"></p>
+        </TailwindCard>
         <TailwindCard
-          badge="Features"
-          title="Utility-First CSS"
-          description="Build modern designs directly in your markup with Tailwind's utility classes."
+          badge="v-number"
+          title="Testing the v-number directive"
           button-text="Explore"
           @click="handleCardClick"
-        />
+        >
+          <p>Number: <strong>125656.65652</strong></p>
+          <p v-number="125656.65652"></p>
+          <p v-number="125656.65652"></p>
+        </TailwindCard>
 
         <TailwindCard
-          badge="Responsive"
-          title="Mobile-First Design"
-          description="Create responsive layouts with Tailwind's mobile-first breakpoint system."
+          badge="Date"
+          title="v-date-time"
           button-text="Try It"
           @click="handleCardClick"
-        />
+        >
+          <p>
+            Current UTC Date and Time: <strong>{{ utcISOString }}</strong>
+          </p>
+          <p v-date-time="utcISOString"></p>
+          <p v-date-time="{ dateStyle: 'long', timeStyle: 'short' }">
+            {{ utcISOString }}
+          </p>
+        </TailwindCard>
       </div>
     </div>
   </div>

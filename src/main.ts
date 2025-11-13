@@ -10,5 +10,5 @@ const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
-app.use(VueTextUtils);
+app.use(VueTextUtils, { defaultCurrency: "USD", locale: "es-SV" });
 app.mount("#app");
